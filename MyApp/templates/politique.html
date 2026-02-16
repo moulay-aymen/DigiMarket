@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiMarket - سياسات الموقع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .logoa {
+            text-decoration: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles - IMPROVED FOR MOBILE */
+        .header {
+            background: linear-gradient(135deg, #0B0E14 0%, #1a1f2e 100%);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #A020F0;
+            box-shadow: 0 5px 20px rgba(160, 32, 240, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .logo-icon {
+            color: #00FFFF;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            flex-shrink: 0;
+        }
+        
+        .logo-text {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+            font-weight: 300;
+            line-height: 1.3;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex: 1;
+        }
+        
+        .user-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #A020F0, #00FFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .user-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Language Selector - IMPROVED */
+        .language-selector {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            color: #FFFFFF;
+            padding: 6px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            white-space: nowrap;
+        }
+        
+        .lang-btn:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            border-color: #00FFFF;
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(45deg, #A020F0, #00FFFF);
+            border-color: transparent;
+        }
+        
+        /* Main Navigation Menu - IMPROVED */
+        .main-nav {
+            background-color: rgba(11, 14, 20, 0.95);
+            border-bottom: 2px solid rgba(160, 32, 240, 0.3);
+            padding: 0 5%;
+            position: sticky;
+            top: auto;
+            z-index: 999;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            position: relative;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            min-height: 60px;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(160, 32, 240, 0.1);
+            color: #00FFFF;
+            border-bottom-color: #A020F0;
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom-color: #00FFFF;
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+        
+        .nav-icon {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            flex-shrink: 0;
+        }
+        
+        /* Main Content - IMPROVED */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 5%;
+            width: 100%;
+        }
+        
+        /* About Site Section - IMPROVED */
+        .about-site-section {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(160, 32, 240, 0.05));
+            border-radius: 15px;
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-site-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(160, 32, 240, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .about-title {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+            padding: 0 10px;
+        }
+        
+        .about-description {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+        
+        .site-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .feature {
+            background-color: rgba(11, 14, 20, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            transition: all 0.4s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            border-color: #00FFFF;
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            color: #FFFFFF;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        /* Policy Title Section - IMPROVED */
+        .policy-title-section {
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(0, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-title-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(160, 32, 240, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .policy-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+            padding: 0 10px;
+        }
+        
+        .policy-subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+        
+        /* Policy Content Section - IMPROVED */
+        .policy-content-section {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: clamp(30px, 4vw, 50px) clamp(20px, 3vw, 40px);
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-content-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .policy-content-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .section-title {
+            color: #00FFFF;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            line-height: 1.3;
+        }
+        
+        .policy-points-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .policy-point {
+            background-color: rgba(11, 14, 20, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #A020F0;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .policy-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.05), transparent);
+            z-index: 0;
+        }
+        
+        .policy-point:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(160, 32, 240, 0.2);
+            border-color: #00FFFF;
+        }
+        
+        .policy-point-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .policy-point-icon {
+            color: #00FFFF;
+            font-size: 1.5rem;
+            background: rgba(0, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .policy-point h3 {
+            color: #FFFFFF;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin: 0;
+            line-height: 1.3;
+        }
+        
+        .policy-point p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background-color: rgba(0, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 4px solid #00FFFF;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .warning {
+            background-color: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 4px solid #FF6B6B;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .warning-icon {
+            color: #FF6B6B;
+            margin-right: 10px;
+        }
+        
+        /* Contact Section - IMPROVED */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(0, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
+            margin-top: 40px;
+            text-align: center;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(160, 32, 240, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .contact-title {
+            color: #00FFFF;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+        
+        .contact-description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+        
+        .email-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(160, 32, 240, 0.3);
+            word-break: break-all;
+            max-width: 100%;
+        }
+        
+        .email-button:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* Footer - IMPROVED */
+        .footer {
+            background-color: rgba(11, 14, 20, 0.9);
+            border-top: 2px solid #A020F0;
+            padding: 40px 5% 25px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section {
+            min-width: 0;
+        }
+        
+        .footer-logo {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .footer-links h3 {
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .footer-links a:hover {
+            color: #00FFFF;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            line-height: 1.5;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 14, 20, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1001;
+        }
+        
+        /* Responsive Design - UPDATED */
+        @media (max-width: 1200px) {
+            .policy-points-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-nav {
+                padding: 0 4%;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                width: 100%;
+                min-width: 100%;
+            }
+            
+            .nav-link {
+                justify-content: flex-start;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .logo {
+                min-width: 100%;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+            }
+            
+            .user-actions {
+                justify-content: center;
+            }
+            
+            .site-features {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 4%;
+            }
+            
+            .policy-content-section {
+                padding: 25px 20px;
+            }
+            
+            .policy-title, .about-title {
+                font-size: 2rem;
+            }
+            
+            .policy-points-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .policy-title-section, .about-site-section {
+                padding: 30px 20px;
+            }
+            
+            .main-container {
+                padding: 20px 4%;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .language-selector {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .policy-point {
+                padding: 20px;
+            }
+            
+            .policy-point-title {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .policy-point-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .email-button {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .policy-title, .about-title {
+                font-size: 1.8rem;
+            }
+            
+            .policy-content-section, .contact-section {
+                padding: 20px 15px;
+            }
+            
+            .policy-point {
+                padding: 20px 15px;
+                min-height: auto;
+            }
+            
+            .policy-point-title {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .email-button {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .header {
+                padding: 10px 4%;
+            }
+            
+            .nav-link {
+                padding: 12px 15px;
+            }
+            
+            .feature {
+                padding: 15px;
+            }
+            
+            .footer {
+                padding: 30px 4% 20px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .policy-points-container {
+                gap: 15px;
+            }
+            
+            .feature {
+                padding: 15px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="{% url 'home' %}" class="logoa">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div>
+                    <div class="logo-text">DigiMarket</div>
+                    <div class="tagline">Votre marché numérique ultime | سوقك الرقمي المثالي</div>
+                </div>
+            </div>
+        </a>
+        <div class="user-actions">
+            <div class="language-selector">
+                <button class="lang-btn active" id="lang-fr">
+                    <i class="fas fa-language"></i> Français
+                </button>
+                <button class="lang-btn" id="lang-ar">
+                    <i class="fas fa-language"></i> العربية
+                </button>
+            </div>
+            <a href="#">
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    <!-- Main Navigation Menu -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-plus-circle nav-icon"></i>
+                        <span class="fr-text">Ajouter un produit</span>
+                        <span class="ar-text" style="display:none;">إضافة منتج</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-boxes nav-icon"></i>
+                        <span class="fr-text">Voir le stock</span>
+                        <span class="ar-text" style="display:none;">عرض المخزون</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-filter nav-icon"></i>
+                        <span class="fr-text">Filtrer les produits</span>
+                        <span class="ar-text" style="display:none;">تصفية المنتجات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-user-circle nav-icon"></i>
+                        <span class="fr-text">Mon profil</span>
+                        <span class="ar-text" style="display:none;">ملفي</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- About Site Section -->
+        <section class="about-site-section">
+            <h1 class="about-title">
+                <span class="fr-text">À propos de DigiMarket</span>
+                <span class="ar-text" style="display:none;">حول DigiMarket</span>
+            </h1>
+            <p class="about-description">
+                <span class="fr-text">DigiMarket est une plateforme dédiée à l'organisation et la facilitation des ventes et achats de produits numériques. Notre mission est de créer un environnement sécurisé et efficace pour les créateurs et acheteurs de contenu numérique.</span>
+                <span class="ar-text" style="display:none;">DigiMarket هو منصة مخصصة لتنظيم وتسهيل بيع وشراء المنتجات الرقمية. مهمتنا هي خلق بيئة آمنة وفعالة للمبدعين والمشترين للمحتوى الرقمي.</span>
+            </p>
+            
+            <div class="site-features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">
+                        <span class="fr-text">Transactions Sécurisées</span>
+                        <span class="ar-text" style="display:none;">معاملات آمنة</span>
+                    </h3>
+                    <p class="feature-desc">
+                        <span class="fr-text">Paiements cryptés et système de protection des transactions pour une sécurité maximale.</span>
+                        <span class="ar-text" style="display:none;">مدفوعات مشفرة ونظام حماية المعاملات لأقصى درجات الأمان.</span>
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">
+                        <span class="fr-text">Livraison Instantanée</span>
+                        <span class="ar-text" style="display:none;">توصيل فوري</span>
+                    </h3>
+                    <p class="feature-desc">
+                        <span class="fr-text">Accès immédiat aux produits après paiement, sans délais d'attente.</span>
+                        <span class="ar-text" style="display:none;">وصول فوري للمنتجات بعد الدفع، دون تأخير.</span>
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">
+                        <span class="fr-text">Communauté Active</span>
+                        <span class="ar-text" style="display:none;">مجتمع نشط</span>
+                    </h3>
+                    <p class="feature-desc">
+                        <span class="fr-text">Une plateforme réunissant créateurs et acheteurs pour des échanges fructueux.</span>
+                        <span class="ar-text" style="display:none;">منصة تجمع المبدعين والمشترين لتبادل مثمر.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Policy Title Section -->
+        <section class="policy-title-section">
+            <h1 class="policy-title">
+                <span class="fr-text">Politiques et Conditions du Site</span>
+                <span class="ar-text" style="display:none;">سياسات وشروط الموقع</span>
+            </h1>
+            <p class="policy-subtitle">
+                <span class="fr-text">Veuillez lire attentivement les termes et politiques suivants avant d'utiliser le site</span>
+                <span class="ar-text" style="display:none;">نرجو قراءة الشروط والسياسات التالية بعناية قبل استخدام الموقع</span>
+            </p>
+        </section>
+        
+        <!-- Policy Content Section -->
+        <section class="policy-content-section">
+            <h2 class="section-title">
+                <i class="fas fa-file-contract"></i>
+                <span class="fr-text">Détails des Politiques</span>
+                <span class="ar-text" style="display:none;">تفاصيل السياسات</span>
+            </h2>
+            
+            <div class="policy-points-container">
+                <!-- Point 1: Payment System -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Système de Paiement</span>
+                            <span class="ar-text" style="display:none;">نظام الدفع</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">Le site fonctionne avec le système de paiement <strong>Chargily</strong> pour les transactions financières.</span>
+                        <span class="ar-text" style="display:none;">يعمل الموقع بنظام دفع <strong>شارجيلي</strong> المعتمد للتعاملات المالية.</span>
+                    </p>
+                    <p>
+                        <span class="fr-text">Ce système offre un moyen de paiement sécurisé et facile pour finaliser les achats sur le site.</span>
+                        <span class="ar-text" style="display:none;">يوفر هذا النظام وسيلة دفع آمنة وسهلة لإتمام عمليات الشراء على الموقع.</span>
+                    </p>
+                </div>
+                
+                <!-- Point 2: Withdrawal of Profits -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Retrait des Bénéfices</span>
+                            <span class="ar-text" style="display:none;">سحب الأرباح</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">Vous pouvez retirer vos bénéfices après <strong>14 jours</strong> à partir de la date de leur réalisation.</span>
+                        <span class="ar-text" style="display:none;">يمكنك سحب الأرباح بعد مرور <strong>14 يوم</strong> من تاريخ تحقيقها.</span>
+                    </p>
+                    <div class="highlight">
+                        <p>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="fr-text"><strong>Note importante:</strong> Vous devez entrer votre <strong>RIP code Baridi Mob</strong> pour recevoir vos bénéfices.</span>
+                            <span class="ar-text" style="display:none;"><strong>ملاحظة هامة:</strong> يجب إدخال <strong>Rip code baridi mob</strong> الخاص بك لاستقبال الأرباح.</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Point 3: Digital Products -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Produits Numériques</span>
+                            <span class="ar-text" style="display:none;">المنتجات الرقمية</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">Vous ne pouvez pas télécharger le produit numérique avant d'avoir payé son prix en totalité.</span>
+                        <span class="ar-text" style="display:none;">لا يمكنك تحميل المنتج الرقمي حتى تقوم بدفع ثمنه بالكامل.</span>
+                    </p>
+                    <p>
+                        <span class="fr-text">Le lien de téléchargement sera activé automatiquement après un paiement réussi.</span>
+                        <span class="ar-text" style="display:none;">سيتم تفعيل رابط التحميل تلقائياً بعد إتمام عملية الدفع بنجاح.</span>
+                    </p>
+                </div>
+                
+                <!-- Point 4: Compliance with Laws -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Respect des Règlements</span>
+                            <span class="ar-text" style="display:none;">الالتزام بالقوانين</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">Vous serez expulsé du site si vous effectuez une action qui contrevient aux lois et conditions d'utilisation.</span>
+                        <span class="ar-text" style="display:none;">يتم طردك من الموقع إذا قمت بأي عمل يخالف قوانين وشروط الاستخدام.</span>
+                    </p>
+                    <div class="warning">
+                        <p>
+                            <i class="fas fa-ban warning-icon"></i>
+                            <span class="fr-text"><strong>Avertissement:</strong> Toute violation des règles entraînera la résiliation immédiate de votre adhésion au site.</span>
+                            <span class="ar-text" style="display:none;"><strong>تحذير:</strong> أي انتهاك للقوانين سيؤدي إلى إنهاء عضويتك في الموقع فوراً.</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Point 5: Conflict Resolution -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Résolution des Conflits</span>
+                            <span class="ar-text" style="display:none;">حل النزاعات</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">En cas de problème entre utilisateurs, j'interviendrai personnellement en tant que propriétaire du site pour résoudre le problème.</span>
+                        <span class="ar-text" style="display:none;">إذا حصلت أي مشكلة بين المستخدمين، فسأتدخل شخصياً كصاحب الموقع لحل المشكلة.</span>
+                    </p>
+                    <p>
+                        <span class="fr-text">Je vise à fournir un environnement sûr et équitable pour tous les utilisateurs.</span>
+                        <span class="ar-text" style="display:none;">أهدف إلى توفير بيئة آمنة وعادلة لجميع المستخدمين.</span>
+                    </p>
+                </div>
+                
+                <!-- Point 6: Product Display System (UPDATED) -->
+                <div class="policy-point">
+                    <div class="policy-point-title">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-sort-amount-down"></i>
+                        </div>
+                        <h3>
+                            <span class="fr-text">Système d'Affichage des Produits</span>
+                            <span class="ar-text" style="display:none;">نظام عرض المنتجات</span>
+                        </h3>
+                    </div>
+                    <p>
+                        <span class="fr-text">Le site utilise un système intelligent pour organiser l'affichage des produits basé sur leur qualité et pertinence.</span>
+                        <span class="ar-text" style="display:none;">يستخدم الموقع نظامًا ذكيًا لتنظيم عرض المنتجات بناءً على جودتها وملاءمتها.</span>
+                    </p>
+                    <div class="highlight">
+                        <p>
+                            <i class="fas fa-star"></i>
+                            <span class="fr-text"><strong>Affichage optimisé:</strong> Les produits sont organisés selon un algorithme qui privilégie la qualité, la satisfaction client et la pertinence, garantissant que les meilleurs produits apparaissent en premier.</span>
+                            <span class="ar-text" style="display:none;"><strong>عرض محسّن:</strong> يتم تنظيم المنتجات وفقًا لخوارزمية تعطي الأولوية للجودة ورضا العملاء والملاءمة، مما يضمن ظهور أفضل المنتجات أولاً.</span>
+                        </p>
+                    </div>
+                    <p>
+                        <span class="fr-text">Ce système évalue automatiquement les produits en fonction de plusieurs critères objectifs pour optimiser l'expérience d'achat.</span>
+                        <span class="ar-text" style="display:none;">يقوم هذا النظام تلقائيًا بتقييم المنتجات بناءً على عدة معايير موضوعية لتحسين تجربة الشراء.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="contact-title">
+                <span class="fr-text">Contactez-Nous</span>
+                <span class="ar-text" style="display:none;">للتواصل معنا</span>
+            </h2>
+            <p class="contact-description">
+                <span class="fr-text">Si vous avez une question ou rencontrez un problème, n'hésitez pas à nous contacter par e-mail :</span>
+                <span class="ar-text" style="display:none;">إذا كان لديك أي استفسار أو واجهت أي مشكلة، لا تتردد في التواصل معنا عبر البريد الإلكتروني:</span>
+            </p>
+            <a href="mailto:moulayaymen.bouabdallah@gmail.com" class="email-button">
+                <i class="fas fa-paper-plane"></i> moulayaymen.bouabdallah@gmail.com
+            </a>
+            <p style="margin-top: 25px; color: rgba(255, 255, 255, 0.85); position: relative; z-index: 1;">
+                <span class="fr-text">Nous répondrons à vos questions dès que possible.</span>
+                <span class="ar-text" style="display:none;">سيتم الرد على استفساراتكم في أقرب وقت ممكن.</span>
+            </p>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">DigiMarket</div>
+                <p class="footer-tagline">
+                    <span class="fr-text">La plateforme idéale pour organiser et faciliter les ventes et achats de produits numériques en toute sécurité.</span>
+                    <span class="ar-text" style="display:none;">المنصة المثالية لتنظيم وتسهيل بيع وشراء المنتجات الرقمية بأمان.</span>
+                </p>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>
+                    <span class="fr-text">Liens Rapides</span>
+                    <span class="ar-text" style="display:none;">روابط سريعة</span>
+                </h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Ajouter un produit</span><span class="ar-text" style="display:none;">إضافة منتج</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Gérer le stock</span><span class="ar-text" style="display:none;">إدارة المخزون</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Filtre avancé</span><span class="ar-text" style="display:none;">فلتر متقدم</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Mon compte</span><span class="ar-text" style="display:none;">حسابي</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>
+                    <span class="fr-text">Politiques</span>
+                    <span class="ar-text" style="display:none;">السياسات</span>
+                </h3>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-chevron-right"></i> <span class="fr-text">Politique du site</span><span class="ar-text" style="display:none;">سياسة الموقع</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Conditions d'utilisation</span><span class="ar-text" style="display:none;">شروط الاستخدام</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Politique de confidentialité</span><span class="ar-text" style="display:none;">سياسة الخصوصية</span></a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> <span class="fr-text">Support</span><span class="ar-text" style="display:none;">الدعم</span></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; <span id="currentYear"></span> DigiMarket. 
+            <span class="fr-text">Tous droits réservés. | Plateforme de commerce numérique</span>
+            <span class="ar-text" style="display:none;">جميع الحقوق محفوظة. | منصة التجارة الرقمية</span>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Language switching functionality
+            const langFrBtn = document.getElementById('lang-fr');
+            const langArBtn = document.getElementById('lang-ar');
+            
+            function switchLanguage(lang) {
+                // Update active button
+                langFrBtn.classList.remove('active');
+                langArBtn.classList.remove('active');
+                
+                if (lang === 'fr') {
+                    langFrBtn.classList.add('active');
+                    
+                    // Show French text, hide Arabic
+                    document.querySelectorAll('.fr-text').forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                    document.querySelectorAll('.ar-text').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    
+                    // Change HTML lang attribute
+                    document.documentElement.lang = 'fr';
+                    
+                    // Change text direction
+                    document.body.style.direction = 'ltr';
+                    document.querySelectorAll('.policy-point, .highlight, .warning').forEach(el => {
+                        el.style.borderLeft = '5px solid #A020F0';
+                        el.style.borderRight = 'none';
+                    });
+                    
+                    // Update tagline
+                    document.querySelector('.tagline').innerHTML = 'Votre marché numérique ultime';
+                } else if (lang === 'ar') {
+                    langArBtn.classList.add('active');
+                    
+                    // Show Arabic text, hide French
+                    document.querySelectorAll('.fr-text').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    document.querySelectorAll('.ar-text').forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                    
+                    // Change HTML lang attribute
+                    document.documentElement.lang = 'ar';
+                    
+                    // Change text direction
+                    document.body.style.direction = 'rtl';
+                    document.querySelectorAll('.policy-point, .highlight, .warning').forEach(el => {
+                        el.style.borderRight = '5px solid #A020F0';
+                        el.style.borderLeft = 'none';
+                    });
+                    
+                    // Update tagline
+                    document.querySelector('.tagline').innerHTML = 'سوقك الرقمي المثالي';
+                }
+            }
+            
+            // Set default language to French
+            switchLanguage('fr');
+            
+            // Add event listeners for language buttons
+            langFrBtn.addEventListener('click', function() {
+                switchLanguage('fr');
+            });
+            
+            langArBtn.addEventListener('click', function() {
+                switchLanguage('ar');
+            });
+            
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Animate policy points on page load
+            const policyPoints = document.querySelectorAll('.policy-point');
+            policyPoints.forEach((point, index) => {
+                point.style.opacity = '0';
+                point.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    point.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    point.style.opacity = '1';
+                    point.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+            
+            // Animate features
+            const features = document.querySelectorAll('.feature');
+            features.forEach((feature, index) => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    feature.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                }, 300 + index * 150);
+            });
+            
+            // Animate title sections
+            const aboutTitle = document.querySelector('.about-title');
+            const aboutDescription = document.querySelector('.about-description');
+            
+            aboutTitle.style.opacity = '0';
+            aboutTitle.style.transform = 'translateY(20px)';
+            aboutDescription.style.opacity = '0';
+            aboutDescription.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                aboutTitle.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                aboutTitle.style.opacity = '1';
+                aboutTitle.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    aboutDescription.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    aboutDescription.style.opacity = '1';
+                    aboutDescription.style.transform = 'translateY(0)';
+                }, 300);
+            }, 200);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stock - DigiMarket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: #00FFFF;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        }
+        
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1.5px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(160, 32, 240, 0.1);
+            color: #00FFFF;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: rgba(160, 32, 240, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(160, 32, 240, 0.2);
+        }
+        
+        .add-product-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .add-product-btn:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Stock Container */
+        .stock-container {
+            background: rgba(11, 14, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(0, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        
+        .stock-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #A020F0, #00FFFF);
+            opacity: 0.5;
+        }
+        
+        /* Stock Header */
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stock-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .stock-count {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00FFFF;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #00FFFF;
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+        
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-image-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+        
+        .product-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-name {
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            min-height: 4.2em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            color: #00FFFF;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        /* Action Buttons */
+        .product-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .view-btn {
+            background: rgba(160, 32, 240, 0.1);
+            color: #FFFFFF;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .view-btn:hover {
+            background: rgba(160, 32, 240, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(160, 32, 240, 0.2);
+        }
+        
+        .edit-btn {
+            background: rgba(0, 255, 255, 0.1);
+            color: #FFFFFF;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .edit-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .delete-btn {
+            background: rgba(255, 107, 107, 0.1);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 100px 40px;
+            background: rgba(160, 32, 240, 0.05);
+            border-radius: 20px;
+            border: 2px dashed #A020F0;
+            grid-column: 1 / -1;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .empty-icon {
+            font-size: 5rem;
+            color: #A020F0;
+            margin-bottom: 30px;
+            opacity: 0.7;
+        }
+        
+        .empty-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .empty-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #00FFFF;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .stock-container {
+                padding: 40px 30px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .back-btn,
+            .add-product-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .stock-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stock-count {
+                align-self: flex-start;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .stock-container {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .stock-title {
+                font-size: 1.6rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image-container {
+                height: 200px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <a href="{% url 'home' %}" style="text-decoration: none;">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="logo-text">DigiMarket</div>
+                </div>
+            </a>
+            <div class="header-actions">
+                <a href="{% url 'home' %}" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+                <a href="{% url 'add' %}" class="add-product-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    Add New Product
+                </a>
+            </div>
+        </div>
+        
+        <!-- Stock Container -->
+        <div class="stock-container">
+            <!-- Stock Header -->
+            <div class="stock-header">
+                <h2 class="stock-title">
+                    <i class="fas fa-boxes"></i>
+                    My Product Stock
+                </h2>
+                
+                {% if products %}
+                <div class="stock-count">
+                    {{ products|length }} product{% if products|length != 1 %}s{% endif %} in stock
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Products Grid -->
+            {% if products %}
+                <div class="products-grid">
+                    {% for i in products %}
+                    <div class="product-card" data-index="{{ forloop.counter0 }}">
+                        <a href="{% url 'detail' i.id %}" class="product-link">
+                            <div class="product-image-container">
+                                <img src="{{ i.image.url }}" alt="{{ i.name }}" class="product-image">
+                                <div class="product-status">Active</div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">{{ i.name }}</h3>
+                                <div class="product-price"> DA {{ i.price }}</div>
+                            </div>
+                        </a>
+                        
+                        <div class="product-actions">
+                            <a href="{% url 'detail' i.id %}" class="action-btn view-btn">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </a>
+                            <a href="{% url 'edit' i.id %}" class="action-btn edit-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="action-btn delete-btn">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="empty-title">Your Stock is Empty</h3>
+                    <p class="empty-text">
+                        You haven't added any products to your stock yet. Start selling by adding your first digital product!
+                    </p>
+                    <a href="{% url 'add' %}" class="add-product-btn" style="display: inline-flex; padding: 16px 35px;">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Your First Product
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2026 DigiMarket. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add staggered animation to product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach((card, index) => {
+                card.style.animationDelay = ` DA {index * 0.1}s`;
+            });
+            
+            // Add confirmation for delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
+                        e.preventDefault();
+                        return false;
+                    }
+                    
+                    // Show loading state on delete
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+                    this.style.pointerEvents = 'none';
+                    
+                    // Reset after 2 seconds (in production, this happens after server response)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.pointerEvents = 'auto';
+                    }, 2000);
+                });
+            });
+            
+            // Add hover effect to edit buttons
+            const editButtons = document.querySelectorAll('.edit-btn');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Show loading state on edit
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                    this.style.pointerEvents = 'none';
+                    
+                    // Reset after 1.5 seconds (in production, this happens after server response)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.pointerEvents = 'auto';
+                    }, 1500);
+                });
+            });
+            
+            // Add entrance animation to stock container
+            const stockContainer = document.querySelector('.stock-container');
+            stockContainer.style.opacity = '0';
+            stockContainer.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                stockContainer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                stockContainer.style.opacity = '1';
+                stockContainer.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Add click animation to product cards
+            productCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Only trigger for the card itself, not action buttons
+                    if (e.target.closest('.product-actions')) {
+                        return;
+                    }
+                    
+                    const link = this.querySelector('.product-link');
+                    if (link) {
+                        // Add click effect
+                        this.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 200);
+                    }
+                });
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + N for new product
+                if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+                    e.preventDefault();
+                    const addBtn = document.querySelector('.add-product-btn');
+                    if (addBtn) addBtn.click();
+                }
+                
+                // Escape key to go back
+                if (e.key === 'Escape') {
+                    const backBtn = document.querySelector('.back-btn');
+                    if (backBtn) backBtn.click();
+                }
+            });
+            
+            // Add pulse animation to empty state
+            const emptyState = document.querySelector('.empty-state');
+            if (emptyState) {
+                emptyState.style.opacity = '0';
+                emptyState.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    emptyState.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    emptyState.style.opacity = '1';
+                    emptyState.style.transform = 'translateY(0)';
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - DigiMarket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Profile Card Container */
+        .profile-card {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(11, 14, 20, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #A020F0, #00FFFF);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+        
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.05);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        /* Profile Header */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .profile-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        /* Profile Photo */
+        .profile-photo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+            position: relative;
+        }
+        
+        .profile-photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #00FFFF, #A020F0) border-box;
+            box-shadow: 
+                0 0 40px rgba(160, 32, 240, 0.3),
+                0 0 80px rgba(0, 255, 255, 0.2),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .profile-photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 60px rgba(160, 32, 240, 0.5),
+                0 0 100px rgba(0, 255, 255, 0.3),
+                inset 0 0 30px rgba(0, 255, 255, 0.2);
+            animation: none;
+        }
+        
+        .profile-photo-frame::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, #A020F0, #00FFFF, #A020F0);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1f2e, #0B0E14);
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-photo-placeholder i {
+            font-size: 5rem;
+            color: #A020F0;
+            opacity: 0.7;
+        }
+        
+        /* Username Display */
+        .username-container {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.3s;
+        }
+        
+        .username-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .username-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #00FFFF;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Bio Section */
+        .bio-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(160, 32, 240, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.4s;
+        }
+        
+        .bio-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .bio-icon {
+            color: #A020F0;
+            font-size: 1.5rem;
+        }
+        
+        .bio-title {
+            color: #00FFFF;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .bio-content {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border-left: 4px solid #00FFFF;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .bio-empty {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* Footer */
+        .profile-footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.5s;
+        }
+        
+        .profile-tagline {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 40px rgba(160, 32, 240, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(160, 32, 240, 0.5); }
+            100% { box-shadow: 0 0 40px rgba(160, 32, 240, 0.3); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 40px 30px;
+            }
+            
+            .profile-title {
+                font-size: 1.6rem;
+            }
+            
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .username-value {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .profile-card {
+                padding: 30px 25px;
+                border-radius: 20px;
+            }
+            
+            .profile-title {
+                font-size: 1.4rem;
+            }
+            
+            .profile-photo-container {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .username-value {
+                font-size: 1.5rem;
+            }
+            
+            .bio-container {
+                padding: 25px 20px;
+            }
+            
+            .bio-content {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <h2 class="profile-title">
+                <i class="fas fa-user-circle"></i>
+                User Profile
+            </h2>
+            
+            <!-- Profile Photo -->
+            <div class="profile-photo-container">
+                <div class="profile-photo-frame">
+                    {% if profile.photo %}
+                        <img src="{{ profile.photo.url }}" alt="{{ profile.user.username }}" class="profile-photo">
+                    {% else %}
+                        <div class="profile-photo-placeholder">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Username Display -->
+        <div class="username-container">
+            <div class="username-label">
+                <i class="fas fa-user-tag"></i>
+                Username
+            </div>
+            <div class="username-value">{{ profile.user.username }}</div>
+        </div>
+        
+        <!-- Bio Section -->
+        <div class="bio-container">
+            <div class="bio-header">
+                <i class="fas fa-edit bio-icon"></i>
+                <h3 class="bio-title">About</h3>
+            </div>
+            
+            <div class="bio-content">
+                {% if profile.bio %}
+                    {{ profile.bio|linebreaks }}
+                {% else %}
+                    <div class="bio-empty">
+                        <i class="fas fa-comment-slash" style="font-size: 2rem; margin-bottom: 15px; color: #A020F0; opacity: 0.5;"></i>
+                        <p>No bio added yet</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="profile-footer">
+            <p class="profile-tagline">DigiMarket User Profile</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to profile photo
+            const profilePhotoFrame = document.querySelector('.profile-photo-frame');
+            
+            if (profilePhotoFrame) {
+                profilePhotoFrame.addEventListener('mouseenter', function() {
+                    this.style.animation = 'none';
+                    this.style.boxShadow = '0 0 60px rgba(160, 32, 240, 0.5), 0 0 100px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(0, 255, 255, 0.2)';
+                });
+                
+                profilePhotoFrame.addEventListener('mouseleave', function() {
+                    this.style.animation = 'pulse 2s infinite';
+                });
+            }
+            
+            // Add entrance animation to profile card
+            const profileCard = document.querySelector('.profile-card');
+            profileCard.style.opacity = '0';
+            profileCard.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                profileCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                profileCard.style.opacity = '1';
+                profileCard.style.transform = 'translateY(0)';
+            }, 200);
+            
+            // Add typing effect to username (optional)
+            const usernameValue = document.querySelector('.username-value');
+            if (usernameValue && usernameValue.textContent.trim()) {
+                const originalText = usernameValue.textContent;
+                usernameValue.textContent = '';
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < originalText.length) {
+                        usernameValue.textContent += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                // Start typing effect after a delay
+                setTimeout(typeWriter, 800);
+            }
+            
+            // Add fade-in effect to bio content
+            const bioContent = document.querySelector('.bio-content');
+            if (bioContent) {
+                setTimeout(() => {
+                    bioContent.style.transition = 'opacity 0.8s ease';
+                    bioContent.style.opacity = '1';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

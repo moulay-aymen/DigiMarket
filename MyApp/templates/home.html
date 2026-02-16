@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiMarket - Your Digital Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+            .mini-policy-alert {
+            background: rgba(11, 14, 20, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 350px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-policy-alert:hover {
+            border-color: #00FFFF;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mini-policy-alert i:first-child {
+            font-size: 1.5rem;
+            color: #00FFFF;
+        }
+        
+        .mini-policy-alert div {
+            flex: 1;
+        }
+        
+        .mini-policy-alert strong {
+            color: #FFFFFF;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .mini-policy-alert p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        .mini-btn {
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-btn:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: rotate(90deg);
+        }
+            .logoa{
+            text-decoration: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #0B0E14 0%, #1a1f2e 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #A020F0;
+            box-shadow: 0 5px 20px rgba(160, 32, 240, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: #00FFFF;
+            font-size: 2.2rem;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+            font-weight: 300;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .user-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #A020F0, #00FFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .user-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Main Navigation Menu */
+        .main-nav {
+            background-color: rgba(11, 14, 20, 0.95);
+            border-bottom: 2px solid rgba(160, 32, 240, 0.3);
+            padding: 0 40px;
+            position: sticky;
+            top: 85px;
+            z-index: 999;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 30px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(160, 32, 240, 0.1);
+            color: #00FFFF;
+            border-bottom-color: #A020F0;
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom-color: #00FFFF;
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+        
+        .logout-link {
+            color: #FF6B6B;
+        }
+        
+        .logout-link:hover {
+            color: #FF4757;
+            border-bottom-color: #FF6B6B;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(0, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 50px;
+            text-align: center;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(160, 32, 240, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .welcome-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Main Search Section */
+        .search-section {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .search-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .search-title {
+            color: #00FFFF;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .search-input-group {
+            display: flex;
+            gap: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 22px 30px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .search-button {
+            padding: 0 40px;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+        
+        .search-button:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+        }
+        
+        .search-hint {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* Results Section */
+        .results-container {
+            margin-bottom: 50px;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .results-title {
+            color: #FFFFFF;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .results-count {
+            color: #00FFFF;
+            font-weight: 700;
+            background-color: rgba(0, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
+            border-color: #00FFFF;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #A020F0, #FF00FF);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-image-container {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-name {
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            color: #00FFFF;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .product-view-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: rgba(160, 32, 240, 0.2);
+            color: #FFFFFF;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(160, 32, 240, 0.5);
+        }
+        
+        .product-view-btn:hover {
+            background-color: rgba(160, 32, 240, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(160, 32, 240, 0.3);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 80px 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px dashed #A020F0;
+            grid-column: 1 / -1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .no-results::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(160, 32, 240, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .no-results-icon {
+            font-size: 5rem;
+            color: #A020F0;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .no-results p {
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .no-results .suggestion {
+            color: #00FFFF;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(0, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #A020F0, #00FFFF);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: #00FFFF;
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.1);
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #00FFFF;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: rgba(11, 14, 20, 0.9);
+            border-top: 2px solid #A020F0;
+            padding: 50px 20px 25px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            color: #00FFFF;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: #00FFFF;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-nav {
+                padding: 0 20px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .search-section {
+                padding: 40px 25px;
+            }
+            
+            .search-input-group {
+                flex-direction: column;
+                border-radius: 15px;
+                overflow: visible;
+                gap: 15px;
+            }
+            
+            .search-input, .search-button {
+                border-radius: 12px !important;
+                width: 100%;
+            }
+            
+            .welcome-title {
+                font-size: 2.3rem;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-section {
+                padding: 40px 25px;
+            }
+            
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                padding: 30px 15px;
+            }
+            
+            .search-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="{% url 'home' %}" class="logoa" ><div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div>
+                <div class="logo-text">DigiMarket</div>
+                <div class="tagline">Your Ultimate Digital Marketplace</div>
+            </div>
+        </div>
+        </a>
+        <a href="{% url 'profile' %}">
+        <div class="user-actions">
+            <div class="user-icon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div></a>
+    </header>
+    
+    <!-- Main Navigation Menu -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="{% url 'add' %}" class="nav-link">
+                        <i class="fas fa-plus-circle nav-icon"></i>
+                        <span>Add Product</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'stock' %}" class="nav-link">
+                        <i class="fas fa-boxes nav-icon"></i>
+                        <span>View Stock</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'filter' %}" class="nav-link">
+                        <i class="fas fa-filter nav-icon"></i>
+                        <span>Filter Products</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}" class="nav-link active">
+                        <i class="fas fa-user-circle nav-icon"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link logout-link">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Welcome to DigiMarket</h1>
+            <p class="welcome-subtitle">Your premier destination for discovering, buying, and selling digital products. Find exactly what you need with our powerful search tool.</p>
+        </section>
+        <div class="mini-policy-alert">
+            <i class="fas fa-file-contract"></i>
+            <div>
+                <strong>Read Site Policies</strong>
+                <p>Understand your rights & responsibilities</p>
+            </div>
+            <a href="{% url 'politique' %}" class="mini-btn">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-value">{% if products %}{{ products|length }}{% else %}0{% endif %}</div>
+                <div class="stat-label">Products Found</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Marketplace Access</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Digital Delivery</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">Secure</div>
+                <div class="stat-label">Payment Processing</div>
+            </div>
+        </div>
+        
+        <!-- Main Search Section -->
+        <section class="search-section">
+            <h2 class="search-title">Search DigiMarket Products</h2>
+            <form method="post" class="search-form">
+                {% csrf_token %}
+                <div class="search-input-group">
+                    <input type="text" name="search" placeholder="Enter product name, desc, or keywords..." class="search-input">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <p class="search-hint">Search for apps, templates, graphics, software, and more</p>
+            </form>
+        </section>
+        
+        <!-- Search Results Section -->
+        <section class="results-container">
+            <div class="results-header">
+                <h2 class="results-title">Search Results</h2>
+                {% if products %}
+                <div class="results-count">{{ products|length }} products found</div>
+                {% endif %}
+            </div>
+            
+            {% if products %}
+            <div class="products-grid">
+                {% for i in products %}
+                <div class="product-card">
+                    <div class="product-badge">Digital</div>
+                    <a href="{% url 'detail' i.id %}" class="product-link">
+                        <div class="product-image-container">
+                            <img src="{{ i.image.url }}" alt="{{ i.name }}" class="product-image">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">{{ i.name }}</h3>
+                            <div class="product-price"> DA {{ i.price }}</div>
+                            <div class="product-view-btn">View Details</div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-results">
+                <div class="no-results-icon">
+                    <i class="fas fa-search-minus"></i>
+                </div>
+                <p>No products found matching your search.</p>
+                <p class="suggestion">Try different keywords or browse our categories.</p>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">DigiMarket</div>
+                <p class="footer-tagline">The leading marketplace for digital products, trusted by thousands of creators and buyers worldwide.</p>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'add' %}"><i class="fas fa-chevron-right"></i> Add Product</a></li>
+                    <li><a href="{% url 'stock' %}"><i class="fas fa-chevron-right"></i> Manage Stock</a></li>
+                    <li><a href="{% url 'filter' %}"><i class="fas fa-chevron-right"></i> Advanced Filter</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fas fa-chevron-right"></i> My Account</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="{% url 'profile' %}"><i class="fas fa-chevron-right"></i> Profile Settings</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fas fa-chevron-right"></i> Logout</a></li>
+                    <li><a href="{% url 'politique' %}"><i class="fas fa-chevron-right"></i>Site Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 DigiMarket. All rights reserved. | Digital Marketplace Solution
+        </div>
+    </footer>
+    <script>
+        // Add animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Set active nav link based on current URL
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Animate product cards on page load
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Animate stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + index * 100);
+            });
+            
+            // Search form interaction
+            const searchForm = document.querySelector('.search-form');
+            
+            searchForm.addEventListener('submit', function(e) {
+                const searchInput = this.querySelector('input[name="search"]');
+                if (searchInput.value.trim() === '') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.style.boxShadow = '0 0 0 2px #FF4757';
+                    setTimeout(() => {
+                        searchInput.style.boxShadow = 'none';
+                    }, 1000);
+                    return false;
+                }
+                
+                // Show loading state
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                submitButton.disabled = true;
+                
+                // In a real app, the form would submit here
+                // For demo purposes, reset after 2 seconds
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 2000);
+            });
+            
+            // Highlight active page in footer
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.style.color = '#00FFFF';
+                    link.innerHTML = '<i class="fas fa-chevron-right"></i> <strong>' + link.textContent + '</strong>';
+                }
+            });
+            
+            // Add floating animation to welcome section elements
+            const welcomeTitle = document.querySelector('.welcome-title');
+            const welcomeSubtitle = document.querySelector('.welcome-subtitle');
+            
+            welcomeTitle.style.opacity = '0';
+            welcomeTitle.style.transform = 'translateY(20px)';
+            welcomeSubtitle.style.opacity = '0';
+            welcomeSubtitle.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                welcomeTitle.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                welcomeTitle.style.opacity = '1';
+                welcomeTitle.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    welcomeSubtitle.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    welcomeSubtitle.style.opacity = '1';
+                    welcomeSubtitle.style.transform = 'translateY(0)';
+                }, 300);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

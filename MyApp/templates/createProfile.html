@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile - DigiMarket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #0B0E14 0%, #1a1f2e 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #A020F0;
+            box-shadow: 0 5px 20px rgba(160, 32, 240, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: #00FFFF;
+            font-size: 2.2rem;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+            font-weight: 300;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .user-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #A020F0, #00FFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .user-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Main Navigation Menu */
+        .main-nav {
+            background-color: rgba(11, 14, 20, 0.95);
+            border-bottom: 2px solid rgba(160, 32, 240, 0.3);
+            padding: 0 40px;
+            position: sticky;
+            top: 85px;
+            z-index: 999;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 30px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(160, 32, 240, 0.1);
+            color: #00FFFF;
+            border-bottom-color: #A020F0;
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom-color: #00FFFF;
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+        
+        .logout-link {
+            color: #FF6B6B;
+        }
+        
+        .logout-link:hover {
+            color: #FF4757;
+            border-bottom-color: #FF6B6B;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Page Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .page-icon {
+            color: #00FFFF;
+            font-size: 2.5rem;
+            background: rgba(0, 255, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .page-title-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+            max-width: 600px;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .back-button:hover {
+            background: rgba(160, 32, 240, 0.2);
+            transform: translateX(-5px);
+            border-color: #A020F0;
+        }
+        
+        /* Profile Setup Container */
+        .profile-setup-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-setup-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .profile-setup-container::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        /* Profile Form */
+        .profile-form {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Form Sections */
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #00FFFF;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .section-icon {
+            font-size: 1.3rem;
+        }
+        
+        /* BEAUTIFUL PHOTO FIELD - ONLY ONE */
+        .photo-field-container {
+            margin-bottom: 40px;
+        }
+        
+        .photo-field-label {
+            display: block;
+            color: #FFFFFF;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .photo-field-description {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .photo-upload-area {
+            border: 2px dashed rgba(160, 32, 240, 0.3);
+            border-radius: 20px;
+            padding: 60px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-upload-area:hover {
+            border-color: #00FFFF;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-upload-area.active {
+            border-color: #00FFFF;
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .photo-upload-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(160, 32, 240, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo-upload-area:hover::before {
+            opacity: 1;
+        }
+        
+        .photo-upload-icon {
+            font-size: 4.5rem;
+            color: #A020F0;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .photo-upload-area:hover .photo-upload-icon {
+            color: #00FFFF;
+            transform: scale(1.1);
+        }
+        
+        .photo-upload-title {
+            color: #FFFFFF;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .photo-upload-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .photo-upload-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(160, 32, 240, 0.3);
+        }
+        
+        .photo-upload-button:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+        }
+        
+        .photo-upload-hint {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            margin-top: 25px;
+            font-style: italic;
+        }
+        
+        .photo-input {
+            display: none;
+        }
+        
+        /* Photo Preview */
+        .photo-preview-container {
+            margin-top: 40px;
+            display: none;
+        }
+        
+        .photo-preview-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .preview-title {
+            color: #00FFFF;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .photo-preview {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #00FFFF;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            position: relative;
+        }
+        
+        .photo-preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-icon {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .preview-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .preview-change-btn, .preview-remove-btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .preview-change-btn {
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+        }
+        
+        .preview-change-btn:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: translateY(-3px);
+        }
+        
+        .preview-remove-btn {
+            background: rgba(255, 107, 107, 0.2);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .preview-remove-btn:hover {
+            background: rgba(255, 107, 107, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* Form Fields */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            color: #FFFFFF;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .form-field {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(160, 32, 240, 0.3);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-field:focus {
+            outline: none;
+            border-color: #00FFFF;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .form-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        textarea.form-field {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        select.form-field {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300FFFF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 25px center;
+            background-size: 16px;
+            padding-right: 50px;
+        }
+        
+        /* Fix for select dropdown options */
+        select.form-field option {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            padding: 10px;
+        }
+        
+        /* Django Form Styling */
+        .django-form-field {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(160, 32, 240, 0.3);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .django-form-field:focus {
+            outline: none;
+            border-color: #00FFFF;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .django-form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300FFFF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 25px center;
+            background-size: 16px;
+            padding-right: 50px;
+        }
+        
+        .django-form-select option {
+            background-color: #0B0E14;
+            color: #FFFFFF;
+            padding: 10px;
+        }
+        
+        .django-form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        /* Privacy Section */
+        .privacy-section {
+            background: rgba(160, 32, 240, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+        }
+        
+        .privacy-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .privacy-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            accent-color: #00FFFF;
+        }
+        
+        .privacy-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .privacy-link {
+            color: #00FFFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(160, 32, 240, 0.3);
+        }
+        
+        .submit-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #A020F0, #8A2BE2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(160, 32, 240, 0.3);
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(45deg, #00FFFF, #20B2AA);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+        }
+        
+        .form-help {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            max-width: 400px;
+        }
+        
+        /* Profile Benefits */
+        .profile-benefits {
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .benefits-title {
+            color: #00FFFF;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .benefits-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00FFFF;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: rgba(11, 14, 20, 0.9);
+            border-top: 2px solid #A020F0;
+            padding: 40px 20px 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00FFFF, #A020F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: #00FFFF;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-nav {
+                padding: 0 20px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .profile-setup-container {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+            
+            .page-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .page-title-text {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 25px;
+                align-items: flex-start;
+            }
+            
+            .submit-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .photo-upload-area {
+                padding: 40px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-setup-container {
+                padding: 30px 20px;
+            }
+            
+            .page-title-text {
+                font-size: 1.8rem;
+            }
+            
+            .page-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                padding: 30px 15px;
+            }
+            
+            .photo-upload-area {
+                padding: 30px 20px;
+            }
+            
+            .photo-upload-icon {
+                font-size: 3.5rem;
+            }
+            
+            .photo-upload-title {
+                font-size: 1.5rem;
+            }
+            
+            .photo-upload-subtitle {
+                font-size: 1rem;
+            }
+            
+            .photo-preview {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div>
+                <div class="logo-text">DigiMarket</div>
+                <div class="tagline">Your Ultimate Digital Marketplace</div>
+            </div>
+        </div>
+        <a href="{% url 'profile' %}">
+        <div class="user-actions">
+            <div class="user-icon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+        </a>
+    </header>
+    
+    <!-- Main Navigation Menu -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="{% url 'add' %}" class="nav-link">
+                        <i class="fas fa-plus-circle nav-icon"></i>
+                        <span>Add Product</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'stock' %}" class="nav-link">
+                        <i class="fas fa-boxes nav-icon"></i>
+                        <span>View Stock</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'filter' %}" class="nav-link">
+                        <i class="fas fa-filter nav-icon"></i>
+                        <span>Filter Products</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}" class="nav-link active">
+                        <i class="fas fa-user-circle nav-icon"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link logout-link">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title">
+                <div class="page-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div>
+                    <h1 class="page-title-text">Create Your Profile</h1>
+                    <p class="page-subtitle">Complete your profile to get the most out of DigiMarket. Build trust with buyers and sellers.</p>
+                </div>
+            </div>
+            
+            <a href="{% url 'home' %}" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </div>
+        
+        <!-- Profile Setup Container -->
+        <div class="profile-setup-container">
+            <form method="post" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+                
+                <!-- BEAUTIFUL SINGLE PHOTO FIELD -->
+                <div class="photo-field-container">
+                    <label class="photo-field-label">Profile Photo</label>
+                    <p class="photo-field-description">Add a profile photo to help others recognize you. A clear, friendly photo works best!</p>
+                    
+                    <div class="photo-upload-area" id="photoUploadArea">
+                        <div class="photo-upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="photo-upload-title">Upload Your Profile Photo</h3>
+                        <p class="photo-upload-subtitle">Click to select a photo or drag and drop it here. A great profile photo helps build trust in the DigiMarket community.</p>
+                        <button type="button" class="photo-upload-button">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Choose a Photo
+                        </button>
+                        <input type="file" id="photoInput" name="photo" class="photo-input" accept="image/*">
+                        <p class="photo-upload-hint">Recommended: Square photo, at least 500x500 pixels, JPG or PNG format</p>
+                    </div>
+                    
+                    <!-- Photo Preview -->
+                    <div class="photo-preview-container" id="photoPreviewContainer">
+                        <h4 class="preview-title">
+                            <i class="fas fa-check-circle"></i>
+                            Photo Selected
+                        </h4>
+                        <div class="photo-preview" id="photoPreview">
+                            <div class="preview-icon" id="defaultPreviewIcon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <img id="previewImage" class="photo-preview-image" style="display: none;" alt="Profile Photo Preview">
+                        </div>
+                        <div class="preview-actions">
+                            <button type="button" class="preview-change-btn" id="changePhotoBtn">
+                                <i class="fas fa-sync-alt"></i>
+                                Change Photo
+                            </button>
+                            <button type="button" class="preview-remove-btn" id="removePhotoBtn">
+                                <i class="fas fa-trash-alt"></i>
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Django Form Fields (excluding photo field) -->
+                <!-- Django Form Fields (excluding photo field) -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-user-edit section-icon"></i>
+                        Personal Information
+                    </h3>
+                    
+                    <!-- Django will render form fields here (excluding photo) -->
+                    {% for field in form %}
+                        {% if field.name != 'photo' %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% if field.field.widget.input_type == 'select' %}
+                                <select name="{{ field.name }}" class="django-form-field django-form-select">
+                                    {% for choice in field.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if field.value == choice.0 %}selected{% endif %}>
+                                            {{ choice.1 }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            {% elif field.field.widget.input_type == 'textarea' %}
+                                <textarea name="{{ field.name }}" class="django-form-field django-form-textarea" placeholder="Enter {{ field.label|lower }}">{{ field.value|default:'' }}</textarea>
+                            {% else %}
+                                <input type="{{ field.field.widget.input_type }}" 
+                                    name="{{ field.name }}" 
+                                    class="django-form-field" 
+                                    value="{{ field.value|default:'' }}"
+                                    placeholder="Enter {{ field.label|lower }}"
+                                    {% if field.field.required %}required{% endif %}>
+                            {% endif %}
+                            {% if field.help_text %}
+                                <p style="color: rgba(255, 255, 255, 0.5); margin-top: 5px; font-size: 0.9rem;">{{ field.help_text }}</p>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div style="color: #FF4757; margin-top: 5px; font-size: 0.9rem;">
+                                    {{ field.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <!-- Privacy Section -->
+                <div class="privacy-section">
+                    <div class="privacy-checkbox">
+                        <input type="checkbox" id="privacyAgreement" name="privacy_agreement" required>
+                        <div class="privacy-text">
+                            I agree to the <a href="#" class="privacy-link">Terms of Service</a> and <a href="#" class="privacy-link">Privacy Policy</a>. 
+                            I understand that my profile information will be visible to other DigiMarket users.
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-checkbox">
+                        <input type="checkbox" id="marketingEmails" name="marketing_emails">
+                        <div class="privacy-text">
+                            I'd like to receive marketing emails about new features, products, and special offers from DigiMarket.
+                            I can unsubscribe at any time.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <div class="form-help">
+                        <p><i class="fas fa-lightbulb" style="color: #00FFFF; margin-right: 8px;"></i> 
+                        Complete profiles get 3x more engagement from buyers and sellers.</p>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-user-check"></i>
+                        Create Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Profile Benefits -->
+        <div class="profile-benefits">
+            <h3 class="benefits-title">
+                <i class="fas fa-award"></i>
+                Benefits of a Complete Profile
+            </h3>
+            <ul class="benefits-list">
+                <li><strong>Build Trust</strong> - Verified profiles get more sales and better offers</li>
+                <li><strong>Personalized Experience</strong> - Get recommendations based on your interests</li>
+                <li><strong>Faster Transactions</strong> - Complete profiles get priority processing</li>
+                <li><strong>Community Recognition</strong> - Stand out with a complete profile badge</li>
+                <li><strong>Better Communication</strong> - Buyers and sellers can contact you easily</li>
+                <li><strong>Exclusive Features</strong> - Access premium features only for verified users</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">DigiMarket</div>
+                <p class="footer-tagline">The leading marketplace for digital products, trusted by thousands of creators and buyers worldwide.</p>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'add' %}"><i class="fas fa-chevron-right"></i> Add Product</a></li>
+                    <li><a href="{% url 'stock' %}"><i class="fas fa-chevron-right"></i> Manage Stock</a></li>
+                    <li><a href="{% url 'filter' %}"><i class="fas fa-chevron-right"></i> Advanced Filter</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fas fa-chevron-right"></i> My Account</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section footer-links">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="{% url 'profile' %}"><i class="fas fa-chevron-right"></i> Profile Settings</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fas fa-chevron-right"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 DigiMarket. All rights reserved. | Digital Marketplace Solution
+        </div>
+    </footer>
+    
+    <script>
+        // Add animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Set active nav link based on current URL
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // BEAUTIFUL PHOTO FIELD FUNCTIONALITY
+            const photoUploadArea = document.getElementById('photoUploadArea');
+            const photoInput = document.getElementById('photoInput');
+            const photoPreviewContainer = document.getElementById('photoPreviewContainer');
+            const photoPreview = document.getElementById('photoPreview');
+            const previewImage = document.getElementById('previewImage');
+            const defaultPreviewIcon = document.getElementById('defaultPreviewIcon');
+            const changePhotoBtn = document.getElementById('changePhotoBtn');
+            const removePhotoBtn = document.getElementById('removePhotoBtn');
+            const uploadButton = photoUploadArea.querySelector('.photo-upload-button');
+            
+            // Click on upload area to trigger file input
+            photoUploadArea.addEventListener('click', function(e) {
+                if (e.target !== uploadButton && !e.target.closest('.preview-change-btn') && !e.target.closest('.preview-remove-btn')) {
+                    photoInput.click();
+                }
+            });
+            
+            // Click on upload button to trigger file input
+            uploadButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                photoInput.click();
+            });
+            
+            // Handle photo selection
+            photoInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                        defaultPreviewIcon.style.display = 'none';
+                        
+                        // Show preview container
+                        photoPreviewContainer.classList.add('active');
+                        photoUploadArea.classList.add('active');
+                        
+                        // Add pulsing animation to preview
+                        photoPreview.style.animation = 'pulse 0.5s';
+                        setTimeout(() => {
+                            photoPreview.style.animation = '';
+                        }, 500);
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            // Change photo button
+            changePhotoBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                photoInput.click();
+            });
+            
+            // Remove photo button
+            removePhotoBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                photoInput.value = '';
+                previewImage.style.display = 'none';
+                defaultPreviewIcon.style.display = 'block';
+                photoPreviewContainer.classList.remove('active');
+                photoUploadArea.classList.remove('active');
+            });
+            
+            // Drag and drop for photo
+            photoUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                photoUploadArea.style.borderColor = '#00FFFF';
+                photoUploadArea.style.transform = 'translateY(-5px)';
+            });
+            
+            photoUploadArea.addEventListener('dragleave', function() {
+                photoUploadArea.style.borderColor = '';
+                photoUploadArea.style.transform = '';
+            });
+            
+            photoUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                photoUploadArea.style.borderColor = '';
+                photoUploadArea.style.transform = '';
+                
+                if (e.dataTransfer.files.length > 0) {
+                    photoInput.files = e.dataTransfer.files;
+                    
+                    // Trigger change event
+                    const event = new Event('change', { bubbles: true });
+                    photoInput.dispatchEvent(event);
+                }
+            });
+            
+            // Add animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+                    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0, 255, 255, 0); }
+                    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Form validation
+            const profileForm = document.querySelector('.profile-form');
+            const submitButton = profileForm.querySelector('button[type="submit"]');
+            const privacyAgreement = document.getElementById('privacyAgreement');
+            
+            profileForm.addEventListener('submit', function(e) {
+                // Check privacy agreement
+                if (!privacyAgreement.checked) {
+                    e.preventDefault();
+                    privacyAgreement.parentElement.style.color = '#FF4757';
+                    privacyAgreement.parentElement.style.animation = 'shake 0.5s';
+                    
+                    setTimeout(() => {
+                        privacyAgreement.parentElement.style.color = '';
+                        privacyAgreement.parentElement.style.animation = '';
+                    }, 2000);
+                    
+                    // Scroll to privacy section
+                    privacyAgreement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    return false;
+                }
+                
+                // Show loading state
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Profile...';
+                submitButton.disabled = true;
+                
+                // In a real app, the form would submit here
+                // For demo purposes, reset after 3 seconds
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    alert('Profile created successfully! (This is a demo - in a real app, the form would submit)');
+                }, 3000);
+            });
+            
+            // Add floating animation to page icon
+            const pageIcon = document.querySelector('.page-icon');
+            pageIcon.style.opacity = '0';
+            pageIcon.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                pageIcon.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                pageIcon.style.opacity = '1';
+                pageIcon.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Animate benefits list items
+            const benefitItems = document.querySelectorAll('.benefits-list li');
+            benefitItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 300 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>

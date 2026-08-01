@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 p-4 text-center">
+            <h3 class="fw-bold mb-3 text-danger">Confirmer la suppression</h3>
+            <p>Êtes-vous sûr de vouloir supprimer définitivement le produit <strong>"{{ product.title }}"</strong> ?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger w-100 py-2 mb-2">Oui, supprimer</button>
+                <a href="{% url 'dashboard:vendor_dashboard' %}" class="btn btn-outline-secondary w-100 py-2">Annuler</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

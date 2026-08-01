@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Tableau de Bord Vendeur</h2>
+    <div>
+        <span class="badge bg-success fs-5 p-2">Solde : {{ profile.balance }} DZD</span>
+        <a href="{% url 'payments:request_withdrawal' %}" class="btn btn-outline-success ms-2">Demander un retrait</a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12 text-end">
+        <a href="{% url 'dashboard:product_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Ajouter un produit</a>
+    </div>
+</div>
+
+<h4 class="fw-bold mb-3">Mes Produits</h4>
+<div class="table-responsive bg-white p-3 rounded shadow-sm mb-5">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Prix</th>
+                <th>Vues</th>
+                <th>Ventes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+            <tr>
+                <td>{{ p.title }}</td>
+                <td>{{ p.category.name }}</td>
+                <td>{{ p.price }} DZD</td>
+                <td>{{ p.views_count }}</td>
+                <td>{{ p.sales_count }}</td>
+                <td>
+                    <a href="{% url 'dashboard:product_update' p.id %}" class="btn btn-sm btn-outline-warning">Modifier</a>
+                    <a href="{% url 'dashboard:product_delete' p.id %}" class="btn btn-sm btn-outline-danger">Supprimer</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center text-muted">Vous n'avez publié aucun produit.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

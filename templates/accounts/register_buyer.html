@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="fw-bold mb-3 text-center"><i class="bi bi-person-plus"></i> Inscription Acheteur</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100 py-2 mt-2">S'inscrire comme acheteur</button>
+            </form>
+            <div class="text-center mt-3">
+                <small class="text-muted">Déjà un compte ? <a href="{% url 'login' %}">Connectez-vous</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

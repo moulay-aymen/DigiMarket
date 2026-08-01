@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Hero Section -->
+<div class="p-5 mb-4 bg-primary text-white rounded-3 shadow">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">La Marketplace Algérienne de Produits Numériques</h1>
+        <p class="col-md-8 fs-4">Achetez et vendez des eBooks, PDF, templates, codes source et prompts IA en toute simplicité en Dinars Algériens (DZD).</p>
+        <a href="{% url 'accounts:register_vendor' %}" class="btn btn-light btn-lg fw-bold text-primary">Devenir Vendeur</a>
+    </div>
+</div>
+
+<!-- Catégories -->
+<div class="mb-5">
+    <h3 class="fw-bold mb-3">Catégories</h3>
+    <div class="row g-3">
+        {% for cat in categories %}
+            <div class="col-md-3">
+                <a href="{% url 'products:category_products' cat.slug %}" class="text-decoration-none">
+                    <div class="card text-center p-3 shadow-sm border-0 bg-white hover-shadow">
+                        <h5 class="mb-0 text-dark">{{ cat.name }}</h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Produits Tendance -->
+<div class="mb-5">
+    <h3 class="fw-bold mb-3"><i class="bi bi-fire text-danger"></i> Produits Tendance</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for product in trending_products %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}" style="height: 180px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text text-muted small">{{ product.category.name }}</p>
+                        <p class="fw-bold text-primary fs-5 mt-auto">{{ product.price }} DZD</p>
+                        <a href="{% url 'products:product_detail' product.slug %}" class="btn btn-outline-primary w-100">Voir le produit</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">Aucun produit tendance pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Nouveaux Produits -->
+<div class="mb-5">
+    <h3 class="fw-bold mb-3"><i class="bi bi-stars text-success"></i> Nouveaux Produits</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for product in new_products %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}" style="height: 180px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text text-muted small">{{ product.category.name }}</p>
+                        <p class="fw-bold text-primary fs-5 mt-auto">{{ product.price }} DZD</p>
+                        <a href="{% url 'products:product_detail' product.slug %}" class="btn btn-outline-primary w-100">Voir le produit</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">Aucun nouveau produit pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Pourquoi choisir notre plateforme ? -->
+<div class="row text-center py-5 bg-white rounded shadow-sm mb-5">
+    <h3 class="fw-bold mb-4">Pourquoi choisir notre plateforme ?</h3>
+    <div class="col-md-4">
+        <i class="bi bi-shield-check display-4 text-primary"></i>
+        <h5 class="mt-3 fw-bold">Sécurisé & Fiable</h5>
+        <p class="text-muted">Paiements sécurisés via SlickPay et protection des fichiers.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-lightning-charge display-4 text-warning"></i>
+        <h5 class="mt-3 fw-bold">Téléchargement Instantané</h5>
+        <p class="text-muted">Accédez à vos ressources immédiatement après validation du paiement.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-cash-coin display-4 text-success"></i>
+        <h5 class="mt-3 fw-bold">100% Algérien</h5>
+        <p class="text-muted">Transactions en Dinars Algériens et retraits rapides par RIP.</p>
+    </div>
+</div>
+{% endblock %}
